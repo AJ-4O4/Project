@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Terms & Conditions - CourseMatrix </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #navbar{
+            background-color: rgb(11, 14, 58);
+            padding: 25px 30px;
+            animation: changeNavColor linear forwards;
+            animation-timeline: scroll();
+            animation-range: 0px 100px;
+        }
+        @keyframes changeNavColor{
+            to{
+                background-color: rgb(21, 30, 137);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            }
+        }
+        #navbar.sticky{
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        #navbar ul{
+            list-style: none;
+            display: flex;     
+            align-items: center;              
+            justify-content: space-between;
+        }
+        #navbar ul li a{
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        #menu{
+            margin-right: 25px;
+            display: flex;
+            gap: 25px;   
+        }
+        #logo{
+            font-size: 20px;
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+        }
+        #menu li a:hover{
+            color: rgb(20, 190, 233);
+        }
+        body{
+            background-color:rgb(11, 14, 58) ;
+        }
+        .drpdwn1{
+            position: relative;
+        }
+        .submenu1{
+            background-color: rgb(215, 222, 252);
+            padding: 10px;
+            position: absolute;
+            display: none;
+            z-index: 10;
+            border-radius: 2px;
+            min-width: 180px;        
+            border-top: 3px solid #68aef0;
+        }
+        .submenu1 a{
+            margin: 5px 0;
+            display: block;
+            text-align: justify;
+        }
+        .drpdwn1:hover .submenu1{
+            display: block;
+        }
+        .fa-chevron-down {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        #menu a.AB, #menu a.TC {
+                background:none;
+                border: none;
+                color: #21277b;
+                transition: none;
+                padding: 5px;
+        }
+        #upper{
+            padding: 100px 120px;
+            background:#0e1245;
+            background-image: url("https://www.transparenttextures.com/patterns/escheresque.png");      
+        }
+        #upper h1{
+            color: white;
+            text-align: center;
+            font-size: 45px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #middle{
+            padding: 70px;  
+            color: rgb(221, 224, 251);
+            background-color: rgb(11, 14, 58);
+            background-image: url("https://www.transparenttextures.com/patterns/dark-stripes.png");
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgb(0, 0, 0);
+        }
+        #middle p.p1, #middle p.p2, #middle p.p3, #middle p.p4, #middle p.p5{
+            padding-bottom: 10px;
+        }
+        #footer{
+            background-color: rgb(11, 14, 58);
+            margin-top: 150px;
+            padding: 50px 20px;
+        }
+        #footer .footerlogo {
+            margin-left: 150px;
+        }
+        .logo2{
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+            font-size: 45px;
+        }
+        #footer ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        #footer ul li h4.slogan{
+            color: whitesmoke;
+            padding: 10px;
+            margin-bottom: 30px;
+            font-size: 25px;
+        }
+        #f2 li.email, #f2 li.phno{
+            color: rgb(130, 133, 237);
+        }
+        #f2 li.email:hover, #f2 li.phno:hover{
+            box-shadow: none;
+        }
+        #f0{
+            display: flex;
+            justify-content: space-evenly; 
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #f1, #f2, #f3{
+            padding: 20px;
+            min-width: 200px;
+        }
+        #f1 ul li, #f2 ul li, #f3 ul li {
+            margin-bottom: 10px;
+        }
+        #f1 ul li a, #f2 ul li a, #f3 ul li a{
+            text-decoration: none;
+            color:white;
+            transition: color 0.3s;
+        }
+        #f0 ul li a:hover{
+            box-shadow: 0 1px 1px rgb(130, 133, 237);
+        }
+        #footer2{
+            background: transparent;
+            margin-top: 50px;
+        }
+        hr.footerline{
+            max-width: 1400px;
+            margin: auto;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        #footer2 a i{
+            color: white;
+            transform: scale(1.5);
+            transition: transform 0.3s;
+        }
+        #footer2 a{
+            background-color: rgba(126, 129, 194, 0.344);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.293);
+            color: white;
+            text-align:center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        #footer2 p{
+            margin-top: 30px;
+            color: white;
+        }
+        #footer2 a:hover i{
+            color: rgb(130, 133, 237);
+        }
+        @media (max-width: 1024px){
+            #upper{
+            padding: 100px 50px;
+            }
+            .box2{
+                width: calc((100% - 25px) / 2);
+            }
+        }
+        @media (max-width: 768px){
+            #navbar{
+                padding: 15px;
+            }
+            #navbar ul{
+                flex-direction: column;
+                gap: 15px;
+            }
+            #menu{
+                margin-right: 0;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            #upper{
+                flex-direction: column;
+                padding: 60px 20px;
+                text-align: center;
+            }
+            #upper h1{
+                text-align: center;
+                transform: scale(0.8);
+            }
+            #middle{
+                padding: 40px 20px;
+            }
+            #Team{
+                padding: 40px 20px;
+            }
+            .box2{
+                width: 100%
+            }
+            #footer .footerlogo{
+                margin-left: 0;
+                text-align: center;
+            }
+            #f0{
+                flex-direction: column;
+            }
+            #footer{
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar" class="sticky">
+        <ul>
+            <li id="logo"><a href="" title="CourseMatrix">CourseMatrix</a></li>
+            <div id="menu">
+                <li><a href="index.html" target="_self" title="Home">Home</a></li>|
+                <li class="drpdwn1">
+                    <a href="About.html" target="_blank">About<i class="fa fa-chevron-down"></i></a>
+                    <div class="submenu1">
+                        <a href="About.html" class="AB">About CourseMatrix</a>
+                        <a href="Terms.html" class="TC">Terms & condition</a>
+                    </div>
+                </li>|
+                <li class="drpdwn1">
+                    <a href="Courses.html" target="_blank">Courses<i class="fa fa-chevron-down"></i></a>
+                    <div class="submenu1">
+                        <a href="#" class="AB">Web Development</a>
+                        <a href="#" class="TC">App Development</a>
+                        <a href="#" class="AB">UI/UX Design</a>
+                        <a href="#" class="TC">Cloud Computing</a>
+                        <a href="#" class="AB">C/C++<a>
+                        <a href="#" class="TC">AI/ML Utilities</a>
+                        <a href="Courses.html" class="TC">View ALL<i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </li>|
+                <li><a href="Contact.html" target="_blank" title="Contact Us">Contact</a></li>
+            </div>
+        </ul>
+    </div><hr>
+    <div id="upper">
+        <h1>Terms & Condition</h1>
+    </div>
+    <div id="middle">
+        <p class="p1">Welcome to <b>CourseMatrix</b>, a top-tier source for your technical skills enchancement!</p>
+        <p class="p2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo dolores velit officiis debitis aliquid iste sequi similique? Natus voluptates earum labore. Repudiandae voluptatibus illum, expedita voluptates fuga iste. Ut a, nulla tempora at recusandae harum placeat hic libero vel! Dicta quos laudantium facilis qui possimus consequuntur recusandae corrupti eum inventore libero distinctio, omnis quidem eos consectetur quisquam eaque impedit doloribus aliquid laboriosam similique. Labore tempora excepturi deleniti facilis, fugit quaerat voluptate voluptatem, assumenda mollitia explicabo nemo, nulla eveniet suscipit! Rerum incidunt exercitationem atque aspernatur ad odit obcaecati dolor nemo deleniti quae, provident eius a reprehenderit, eum asperiores? Aut, voluptate! Saepe dolorem voluptatibus ipsum consectetur rem voluptatum placeat aspernatur consequatur? Est aspernatur repudiandae eligendi tempore perspiciatis temporibus dolorem voluptatibus. Quam molestias, id voluptatem error rerum doloremque modi magni aspernatur nam omnis at iusto? Vitae quos, soluta atque velit esse ut? Optio eligendi illum, iste numquam iure consectetur aliquid incidunt. Numquam, quo nostrum omnis non, iure enim ipsam inventore voluptatum deleniti laborum quibusdam praesentium neque illum. Quia suscipit, consequatur aliquam architecto eaque repudiandae hic libero minus saepe quisquam quaerat illum? Vel qui, voluptatibus eligendi sed placeat voluptates quidem? Laborum debitis voluptates eligendi magni hic reprehenderit saepe, delectus vitae perspiciatis fugit praesentium aperiam? Labore iusto quaerat officia totam atque velit natus, error illum voluptates a ipsa cupiditate beatae consequuntur consectetur tempore sunt! Modi mollitia facilis, explicabo fugiat dicta eveniet nisi dolorum porro officiis maxime impedit distinctio, perferendis recusandae id amet aliquid. Dolorem exercitationem temporibus pariatur aperiam enim fugit voluptate, officia consequatur? Officia, autem.</p>
+        <p class="p3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut, amet? Quas, quaerat eaque? Debitis quas reprehenderit iusto quidem consequatur odio beatae officiis tempora! Consequatur nulla, vel sint praesentium laborum rerum alias, architecto, atque eaque impedit enim fugit dolore facilis saepe sequi. Voluptates quasi quo voluptate dicta iure. Nisi voluptas quia libero explicabo eaque magni maxime veritatis suscipit, ipsam consectetur, delectus ipsa sunt architecto animi rem aspernatur neque ipsum quod omnis consequatur est totam quam fugit vero! Nostrum vero nobis, ducimus numquam eos aut autem neque nisi quaerat, consequuntur repellendus iusto quod? Quaerat quisquam minima commodi expedita explicabo nulla rerum eos autem. Modi a deserunt esse earum architecto itaque ex repellendus sapiente magni eos numquam, velit ab totam officia corrupti vel tempore labore voluptates in quae amet! Asperiores placeat voluptatem veritatis perspiciatis vero expedita dignissimos odit? Voluptatem adipisci, corrupti illo iste dolor quo voluptas temporibus libero odio modi asperiores blanditiis excepturi corporis rerum beatae nihil, alias non repudiandae tenetur. Deleniti commodi corporis corrupti ea omnis fuga hic ratione id quae quam dolorum eaque voluptatibus dicta et facilis labore, adipisci voluptatum quis eum placeat necessitatibus blanditiis deserunt. Hic voluptate officia dolor tempora dolore ab error! Saepe, reiciendis temporibus. Reiciendis eveniet earum optio.</p>
+        <p class="p4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste maxime dolor, repellat vitae est saepe voluptates nostrum? Vero vel impedit officia laborum perspiciatis non aliquid labore. Veritatis ullam ipsa saepe facilis, eaque exercitationem nesciunt consectetur voluptatibus esse possimus totam sunt a deserunt. Pariatur cumque sapiente dignissimos, perspiciatis voluptatem aut facere.</p>
+        <p class="p5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dignissimos, sed quia dolores enim eos dicta beatae explicabo molestiae veniam architecto amet porro quaerat minus sit corrupti inventore laborum iste deserunt odit omnis culpa. Animi perspiciatis, repellat nostrum ipsa molestiae, sapiente repudiandae autem fuga, tempora atque doloremque? Sunt accusamus iste autem tempore omnis cum dicta expedita vel amet laborum magnam id necessitatibus quo unde quod earum officia praesentium, hic tempora pariatur! Voluptates adipisci enim aperiam iure cupiditate cum amet voluptate dolorum. Libero expedita non et blanditiis nulla, voluptatum incidunt consequuntur nam facilis, sunt, odit sed molestias? Libero magni vel esse.</p>
+        <p class="p6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quibusdam earum fugiat nam laudantium doloremque architecto eius voluptatum, numquam voluptates.</p>
+    </div><hr>
+    <div id="footer">
+        <div class="footerlogo">
+            <ul>
+                <li class="logo2">CourseMatrix</li>
+                <li><h4 class="slogan">Level up your tech skills.</h4></li>
+            </ul>
+        </div>
+        <div id="f0">
+            <div id="f1">
+                <ul>
+                    <li><a href="About.html" target="_blank">About CourseMatrix</a></li>
+                    <li><a href="Courses.html" target="_blank">Explore All Courses<i class="fa-solid fa-caret-right"></i></a></li>
+                    <li><a href="">FAQ</a></li>
+                </ul>
+            </div>
+            <div id="f2">
+                <ul>
+                    <li><a href="Contact.html" target="_blank">Contact Us</a></li>
+                    <li class="email">coursematrix@xyz.com</li>
+                    <li class="phno">+91 1234567890</li>
+                </ul>
+            </div>
+            <div id="f3">
+                <ul>
+                    <li><a href="">Terms of Use</a></li>
+                    <li><a href="">Privacy Notices</a></li>
+                    <li><a href="">Support/Submit an E-Ticket</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer2">
+            <hr class="footerline"><br><br><br>
+            <center>
+                <a href=""><i class="fa-brands fa-facebook" title="Facebook"></i></a>
+                <a href=""><i class="fa-brands fa-square-x-twitter" title="X"></i></a>
+                <a href=""><i class="fa-brands fa-youtube" title="YouTube"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin" title="LinkedIn"></i></a>
+                <p>©Copyright. All rights reserved.</p>
+                <p>Made by <b>Akshat Joshi</b></p>
+            </center>
+        </div>
+    </div>
+</body>
+</html>

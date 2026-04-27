@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Contact - CourseMatrix </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #navbar{
+            background-color: rgb(11, 14, 58);
+            padding: 25px 30px;
+            animation: changeNavColor linear forwards;
+            animation-timeline: scroll();
+            animation-range: 0px 100px;
+        }
+        @keyframes changeNavColor{
+            to{
+                background-color: rgb(21, 30, 137);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            }
+        }
+        #navbar.sticky{
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        #navbar ul{
+            list-style: none;
+            display: flex;     
+            align-items: center;              
+            justify-content: space-between;
+        }
+        #navbar ul li a{
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        #menu{
+            margin-right: 25px;
+            display: flex;
+            gap: 25px;   
+        }
+        #logo{
+            font-size: 20px;
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+        }
+        #menu li a:hover{
+            color: rgb(20, 190, 233);
+        }
+        body{
+            background-color:rgb(11, 14, 58) ;
+        }
+        .drpdwn1{
+            position: relative;
+        }
+        .submenu1{
+            background-color: rgb(215, 222, 252);
+            padding: 10px;
+            position: absolute;
+            display: none;
+            z-index: 10;
+            border-radius: 2px;
+            min-width: 180px;        
+            border-top: 3px solid #68aef0;
+        }
+        .submenu1 a{
+            margin: 5px 0;
+            display: block;
+            text-align: justify;
+        }
+        .drpdwn1:hover .submenu1{
+            display: block;
+        }
+        .fa-chevron-down {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        #menu a.AB, #menu a.TC {
+                background:none;
+                border: none;
+                color: #21277b;
+                transition: none;
+                padding: 5px;
+        }
+        #upper{
+            padding: 100px 120px;
+            background:#0e1245;
+            background-image: url("https://www.transparenttextures.com/patterns/escheresque.png");      
+        }
+        #upper h1{
+            color: white;
+            text-align: center;
+            font-size: 45px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        
+        #middle{
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 50px auto; 
+            padding: 50px;  
+            color: rgb(221, 224, 251);
+            background-color: rgb(10, 13, 52);
+            background-image: url("https://www.transparenttextures.com/patterns/dark-stripes.png");
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgb(0, 0, 0);
+            border-radius: 10px;
+        }
+        .contactinfo{
+            flex: 1;
+        }
+        .contactinfo p{
+            margin-top: 20px;
+            text-align: justify;
+            line-height: 1.6;
+        }
+        .contactform{
+            flex: 1;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .contactform h2{
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .contactform form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .formrow{
+            display: flex;
+            gap: 15px;
+        }
+        .formrow input{
+            flex: 1;
+        }
+        .contactform input, .contactform textarea{
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #68aef0;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .contactform input::placeholder, .contactform textarea::placeholder{
+            color: #b0b4e0;
+        }
+        .contactform input:focus, .contactform textarea:focus{
+            border-color: #52eef4;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .contactform button{
+            padding: 12px 25px;
+            background-color: #68aef0;
+            color: #0b0e3a;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .contactform button:hover{
+            background-color: #8a99eec0;
+        }
+
+        #footer{
+            background-color: rgb(9, 12, 50);
+            margin-top: 0px;
+            padding: 50px 20px;
+        }
+        #footer .footerlogo {
+            margin-left: 150px;
+            margin-top: 100px;
+        }
+        .logo2{
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+            font-size: 45px;
+        }
+        #footer ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        #footer ul li h4.slogan{
+            color: whitesmoke;
+            padding: 10px;
+            margin-bottom: 30px;
+            font-size: 25px;
+        }
+        #f2 li.email, #f2 li.phno{
+            color: rgb(130, 133, 237);
+        }
+        #f2 li.email:hover, #f2 li.phno:hover{
+            box-shadow: none;
+        }
+        #f0{
+            display: flex;
+            justify-content: space-evenly; 
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #f1, #f2, #f3{
+            padding: 20px;
+            min-width: 200px;
+        }
+        #f1 ul li, #f2 ul li, #f3 ul li {
+            margin-bottom: 10px;
+        }
+        #f1 ul li a, #f2 ul li a, #f3 ul li a{
+            text-decoration: none;
+            color:white;
+            transition: color 0.3s;
+        }
+        #f0 ul li a:hover{
+            box-shadow: 0 1px 1px rgb(130, 133, 237);
+        }
+        #footer2{
+            background: transparent;
+            margin-top: 50px;
+        }
+        hr.footerline{
+            max-width: 1400px;
+            margin: auto;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        #footer2 a i{
+            color: white;
+            transform: scale(1.5);
+            transition: transform 0.3s;
+        }
+        #footer2 a{
+            background-color: rgba(126, 129, 194, 0.344);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.293);
+            color: white;
+            text-align:center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        #footer2 p{
+            margin-top: 30px;
+            color: white;
+        }
+        #footer2 a:hover i{
+            color: rgb(130, 133, 237);
+        }
+        
+        @media (max-width: 1024px){
+            #upper{
+            padding: 100px 50px;
+            }
+            .box2{
+                width: calc((100% - 25px) / 2);
+            }
+        }
+        @media (max-width: 768px){
+            #navbar{
+                padding: 15px;
+            }
+            #navbar ul{
+                flex-direction: column;
+                gap: 15px;
+            }
+            #menu{
+                margin-right: 0;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            #upper{
+                flex-direction: column;
+                padding: 60px 20px;
+                text-align: center;
+            }
+            #upper h1{
+                text-align: center;
+                transform: scale(0.8);
+            }
+            #middle{
+                flex-direction: column;
+                padding: 40px 20px;
+                margin: 20px;
+            }
+            .formrow{
+                flex-direction: column;
+            }
+            #Team{
+                padding: 40px 20px;
+            }
+            .box2{
+                width: 100%
+            }
+            #footer .footerlogo{
+                margin-left: 0;
+                text-align: center;
+            }
+            #f0{
+                flex-direction: column;
+            }
+            #footer{
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar" class="sticky">
+        <ul>
+            <li id="logo"><a href="" title="CourseMatrix">CourseMatrix</a></li>
+            <div id="menu">
+                <li><a href="index.html" target="_self" title="Home">Home</a></li>|
+                <li class="drpdwn1">
+                    <a href="About.html" target="_blank">About<i class="fa fa-chevron-down"></i></a>
+                    <div class="submenu1">
+                        <a href="About.html" class="AB">About CourseMatrix</a>
+                        <a href="Terms.html" class="TC">Terms & condition</a>
+                    </div>
+                </li>|
+                <li class="drpdwn1">
+                    <a href="Courses.html" target="_blank">Courses<i class="fa fa-chevron-down"></i></a>
+                    <div class="submenu1">
+                        <a href="#" class="AB">Web Development</a>
+                        <a href="#" class="TC">App Development</a>
+                        <a href="#" class="AB">UI/UX Design</a>
+                        <a href="#" class="TC">Cloud Computing</a>
+                        <a href="#" class="AB">C/C++</a>
+                        <a href="#" class="TC">AI/ML Utilities</a>
+                        <a href="Courses.html" class="TC">View ALL<i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </li>|
+                <li><a href="Contact.html" target="_blank" title="Contact Us">Contact</a></li>
+            </div>
+        </ul>
+    </div><hr>
+
+    <div id="upper">
+        <h1>Contact Us</h1>
+    </div>
+    <div id="middle">
+        <div class="contactinfo">
+            <h2>COURSE MATRIX HEAD OFFICE</h2>
+            <p><i class="fa-solid fa-phone"></i> +91 1234567890</p>
+            <p><i class="fa-solid fa-envelope"></i> coursematrix@xyz.com</p>
+            <p><i class="fa-solid fa-location-dot"></i> Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, asperiores dignissimos. Earum quasi magni quibusdam. Eum eos obcaecati sed repellendus.</p>
+        </div>
+        <div class="contactform">
+            <h2>Support / Submit an E-Ticket</h2>
+            <form>
+                <div class="formrow">
+                    <input type="text" name="name" placeholder="Name *" required>
+                    <input type="number" name="contact" placeholder="Contact no. *" required>
+                </div>
+                <input type="email" name="email" placeholder="Email *" required>
+                <input type="text" name="course" placeholder="Course Opted (leave as it is if none)">
+                <textarea name="issue" rows="5" placeholder="Please describe your issue" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div id="footer">
+        <div class="footerlogo">
+            <ul>
+                <li class="logo2">CourseMatrix</li>
+                <li><h4 class="slogan">Level up your tech skills.</h4></li>
+            </ul>
+        </div>
+        <div id="f0">
+            <div id="f1">
+                <ul>
+                    <li><a href="About.html" target="_blank">About CourseMatrix</a></li>
+                    <li><a href="Courses.html" target="_blank">Explore All Courses<i class="fa-solid fa-caret-right"></i></a></li>
+                    <li><a href="">FAQ</a></li>
+                </ul>
+            </div>
+            <div id="f2">
+                <ul>
+                    <li><a href="Contact.html" target="_blank">Contact Us</a></li>
+                    <li class="email">coursematrix@xyz.com</li>
+                    <li class="phno">+91 1234567890</li>
+                </ul>
+            </div>
+            <div id="f3">
+                <ul>
+                    <li><a href="">Terms of Use</a></li>
+                    <li><a href="">Privacy Notices</a></li>
+                    <li><a href="">Support/Submit an E-Ticket</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer2">
+            <hr class="footerline"><br><br><br>
+            <center>
+                <a href=""><i class="fa-brands fa-facebook" title="Facebook"></i></a>
+                <a href=""><i class="fa-brands fa-square-x-twitter" title="X"></i></a>
+                <a href=""><i class="fa-brands fa-youtube" title="YouTube"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin" title="LinkedIn"></i></a>
+                <p>©Copyright. All rights reserved.</p>
+                <p>Made by <b>Akshat Joshi</b></p>
+            </center>
+        </div>
+    </div>
+</body>
+</html>

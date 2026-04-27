@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Explore Courses - CourseMatrix</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #navbar{
+            background-color: rgb(11, 14, 58);
+            padding: 25px 30px;
+            animation: changeNavColor linear forwards;
+            animation-timeline: scroll();
+            animation-range: 0px 100px;
+        }
+        @keyframes changeNavColor{
+            to{
+                background-color: rgb(21, 30, 137);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            }
+        }
+        #navbar.sticky{
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        #navbar ul{
+            list-style: none;
+            display: flex;     
+            align-items: center;              
+            justify-content: space-between;
+        }
+        #navbar ul li a{
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        #menu{
+            margin-right: 25px;
+            display: flex;
+            gap: 25px;   
+        }
+        #logo{
+            font-size: 20px;
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+        }
+        #menu li a:hover{
+            color: rgb(20, 190, 233);
+        }
+        body{
+            background-color:rgb(11, 14, 58) ;
+        }
+        .drpdwn1{
+            position: relative;
+        }
+        .submenu1{
+            background-color: rgb(215, 222, 252);
+            padding: 10px;
+            position: absolute;
+            display: none;
+            z-index: 10;
+            border-radius: 2px;
+            min-width: 180px;
+            top: 100%;            
+            border-top: 3px solid #68aef0;
+        }
+        .submenu1 a{
+            margin: 5px 0;
+            display: block;
+            text-align: justify;
+        }
+        .drpdwn1:hover .submenu1{
+            display: block;
+        }
+        .fa-chevron-down{
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        #menu a.AB, #menu a.TC{
+                background:none;
+                border: none;
+                color: #21277b;
+                transition: none;
+                padding: 5px;
+        }
+        #upper{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 120px;
+            background:
+            radial-gradient(circle at top left, #421a4d, transparent 40%),
+            radial-gradient(circle at top right, #4a65bc, transparent 40%),
+            radial-gradient(circle at bottom left, #891b9a, transparent 100%),
+            radial-gradient(circle at bottom right, #052585, transparent 70%),
+            #0b0f3a;
+        }
+        #left h1{
+            text-align: center;
+            font-size: 60px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: white;
+        }
+        #left i{
+            transform: scale(0.6);
+            margin-top: 10px;
+        }
+        #left p{
+            text-align: center;
+            padding: 10px 225px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+        }
+        #left p img{
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 0;
+            transform: scale(0.45);
+        }
+        #middle i{
+            color: rgb(144, 148, 190);
+            margin-bottom: 10px;
+            margin-left: 15px;
+            transform: scale(0.85z);
+        }
+        #middle{
+            padding: 90px;
+            
+        }
+        #middle h2{
+            color: white;
+        }
+        #mheader{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        #mheader h2{
+            font-size: 28px;
+            background-color: rgba(187, 182, 244, 0.133);
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+        #mheader2 i, #mheader3 i, #mheader4 i{
+            transform: scale(0.55);
+        }
+        #mheader2{
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        #mheader2 h2{
+            font-size: 28px;
+        }
+        #mheader3{
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        #mheader3 h2{
+            font-size: 28px;
+        }
+        #mheader4{
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        #mheader4 h2{
+            font-size: 28px;
+        }
+        #explore{
+            padding: 14px 20px;
+            background-color: rgb(20, 190, 233);
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.1s;
+        }
+        #explore a{
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #explore:hover{
+            transform: scale(1.03);
+            background-color: rgb(10, 150, 190);
+        }
+        #courses{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        #top{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg,rgba(0, 0, 255, 0.241),rgba(239, 240, 248, 0.3),rgba(0, 0, 255, 0.137),rgba(239, 240, 248, 0.3),rgba(0, 0, 255, 0.14),rgba(239, 240, 248, 0.3),rgba(0, 0, 255, 0.14));
+            border-radius: 12px;
+        }
+        .box1{
+            width: calc((100% - 50px) / 3); 
+            background-color: rgba(22, 26, 48, 0.61);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: box-shadow 0.1s;
+        }
+        .box2{
+            width: calc((100% - 50px) / 3); 
+            background-color: rgba(157, 164, 200, 0.281);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: box-shadow 0.1s;
+        }
+        .box2 a, .box1 a{
+            text-decoration: none;
+            color: rgb(235, 238, 252);
+        }
+        .box2 img, .box1 img{
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .box2 h3, .box1 h3{
+            padding: 15px 15px 5px;
+        }
+        .box2 p, .box1 p{
+            padding: 0 15px 15px;
+            color: rgba(255, 255, 255, 0.681);
+        }
+        .box2:hover, .box1:hover{
+            box-shadow: 0 0px 12px rgb(210, 222, 255);
+        }
+        .box2 img:hover, .box1 img:hover{
+            transform: scale(1.08);
+        }
+        #bottom{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 800px;
+            background-color: #0e135c;
+            background-image: url("https://www.transparenttextures.com/patterns/dark-stripes.png");
+            font-family: sans-serif
+        }
+        #bottom h2{
+            margin-bottom: 30px; 
+            font-size: 32px;
+            color: white;
+        }
+        #footer{
+            background-color: rgb(8, 10, 41);
+            margin-top: 0px;
+            padding: 50px 20px;
+        }
+        #footer .footerlogo{
+            margin-left: 150px;
+        }
+        .logo2{
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+            font-size: 45px;
+        }
+        #codeLogo{
+            text-align: center;
+            margin-bottom: 100px;
+        }
+        #footer ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        #footer ul li h4.slogan{
+            color: whitesmoke;
+            padding: 10px;
+            margin-bottom: 30px;
+            font-size: 25px;
+        }
+        #f2 li.email, #f2 li.phno{
+            color: rgb(130, 133, 237);
+        }
+        #f2 li.email:hover, #f2 li.phno:hover{
+            box-shadow: none;
+        }
+        #f0{
+            display: flex;
+            justify-content: space-evenly; 
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #f1, #f2, #f3{
+            padding: 20px;
+            min-width: 200px;
+        }
+        #f1 ul li, #f2 ul li, #f3 ul li{
+            margin-bottom: 10px;
+        }
+        #f1 ul li a, #f2 ul li a, #f3 ul li a{
+            text-decoration: none;
+            color:white;
+            transition: color 0.3s;
+        }
+        #f0 ul li a:hover{
+            box-shadow: 0 1px 1px rgb(130, 133, 237);
+        }
+        #footer2{
+            background: transparent;
+            margin-top: 50px;
+        }
+        hr.footerline{
+            max-width: 1400px;
+            margin: auto;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        #footer2 a i{
+            color: white;
+            transform: scale(1.5);
+            transition: transform 0.3s;
+        }
+        #footer2 a{
+            background-color: rgba(126, 129, 194, 0.344);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.293);
+            color: white;
+            text-align:center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        #footer2 p{
+            margin-top: 30px;
+            color: white;
+        }
+        #footer2 a:hover i{
+            color: rgb(130, 133, 237);
+        }
+        @media (max-width: 1024px){
+            #upper{
+            padding: 100px 50px;
+            }
+            #left h1{
+                font-size: 50px; 
+            }
+            #left p{
+                padding: 10px 100px; 
+                font-size: 18px;
+            }
+            .box2{
+                width: calc((100% - 25px) / 2); 
+            }
+        }
+        @media (max-width: 768px){
+            #navbar{
+                padding: 15px;
+            }
+            #navbar ul{
+                flex-direction: column;
+                gap: 15px;
+            }
+            #menu{
+                margin-right: 0;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            #upper{
+                flex-direction: column;
+                padding: 60px 20px;
+                text-align: center;
+            }
+            #left{
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            #left h1{
+                font-size: 36px;  
+                margin-top: 10px;
+                margin-bottom: 15px;
+            }
+            #left p{
+                padding: 10px 15px; 
+                font-size: 15px; 
+                line-height: 1.5;
+            }
+            #left p img{
+                transform: scale(0.35);
+                margin-top: 0;
+            }
+            #middle{
+                padding: 40px 20px;
+            }
+            #mheader{
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .box2{
+                width: 100%; 
+            }
+            #bottom{
+                height: auto;
+                padding: 60px 20px;
+            }
+            #footer .footerlogo{
+                margin-left: 0;
+                text-align: center;
+            }
+            #f0{
+                flex-direction: column;
+            }
+            #footer{
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar" class="sticky">
+        <ul>
+            <li id="logo"><a href="" title="CourseMatrix">CourseMatrix</a></li>
+            <div id="menu">
+                <li><a href="index.html" target="_self" title="Home">Home</a></li>|
+                <li class="drpdwn1">
+                    <a href="About.html" target="_blank">About<i class="fa fa-chevron-down"></i></a>
+                    <div class="submenu1">
+                        <a href="About.html" target ="_blank" class="AB">About CourseMatrix</a>
+                        <a href="Terms.html" target ="_blank" class="TC">Terms & condition</a>
+                    </div>
+                </li>|
+                <li class="drpdwn1">
+                    <a href="Courses.html" target="_blank">Courses<i class="fa fa-chevron-down"></i></a>
+                    <div class="submenu1">
+                        <a href="#" class="AB">Web Development</a>
+                        <a href="#" class="TC">App Development</a>
+                        <a href="#" class="AB">UI/UX Design</a>
+                        <a href="#" class="TC">Cloud Computing</a>
+                        <a href="#" class="AB">C/C++<a>
+                        <a href="#" class="TC">AI/ML Utilities</a>
+                        <a href="Courses.html" class="TC">View ALL<i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </li>|
+                <li><a href="Contact.html" target="_blank" title="Contact Us">Contact</a></li>
+            </div>
+        </ul>
+    </div><hr>
+    <div id="upper">
+        <div id="left">
+            <h1>Courses</h1>
+            <p><b>Master the Matrix of Modern Technology.</b><br> From the fundamentals of logic to the frontiers of full-stack development, our curated tracks are designed to transform beginners into architects.<br><img src="   https://cdn-icons-png.flaticon.com/512/1442/1442581.png " height="100px"><br><i class="fa-solid fa-chevron-left"></i>Don't just learn to code — learn to create.<i class="fa-solid fa-chevron-right"></i></p>
+        </div>
+    </div>
+    <div id="middle">
+        <div id="mheader">
+            <h2>Top Courses Collection</h2>
+        </div>
+        <div id="courses">
+            <div id="top">
+            <div class="box1"><a href="#" title="View details">
+                <img src="https://www.kwiknotes.in/assets/webd.jpg">
+                <h3>Web Development</h3>
+                <p>Learn HTML, CSS, JavaScript and build websites.</p><i class="fa-solid fa-indian-rupee-sign">1000</i></a>
+            </div>
+            <div class="box1"><a href="#" title="View details">
+                <img src="https://bernardmarr.com/img/What%20Really%20Is%20Data%20Science%20A%20Super%20Simple%20Explanation%20For%20Anyone.png">
+                <h3>Data Science</h3>
+                <p>Analyze data using Python, Pandas and ML tools. </p><i class="fa-solid fa-indian-rupee-sign">1500</i></a>
+            </div>
+            <div class="box1"><a href="#" title="View details">
+                <img src="https://www.shutterstock.com/image-vector/cyber-security-infographic-dashboard-futuristic-600nw-2623241241.jpg">
+                <h3>Cyber Security</h3>
+                <p>Protect systems and learn ethical hacking.</p> <i class="fa-solid fa-indian-rupee-sign">2000</i></a>
+            </div>
+            <div class="box1"><a href="#" title="View details">
+                <img src="https://media.licdn.com/dms/image/v2/D4D12AQEd4MuaQy52QQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1714152970752?e=2147483647&v=beta&t=oZ7VWkungS9GA_6d2T4XeatC9jjdsdgbE1642Bwz9rc">
+                <h3>AI & ML</h3>
+                <p>Build intelligent systems and models.</p><i class="fa-solid fa-indian-rupee-sign">2200</i></a>
+            </div>
+            <div class="box1"><a href="#" title="View details">
+                <img src="https://img.freepik.com/premium-photo/futuristic-depiction-cloud-computing-network-infrastructure-with-glowing-data-servers_124507-305284.jpg">
+                <h3>Cloud Computing</h3>
+                <p>Work with Azure, AWS and cloud systems.</p><i class="fa-solid fa-indian-rupee-sign">2500</i></a>
+            </div>
+            <div class="box1"><a href="#" title="View details">
+                <img src="https://img.freepik.com/free-vector/app-development-banner_33099-1720.jpg?semt=ais_hybrid&w=740&q=80">
+                <h3>App Development</h3>
+                <p>Create Android & iOS applications.</p><i class="fa-solid fa-indian-rupee-sign">2500</i></a>
+            </div>
+            </div>
+        </div>
+        <div id="mheader2">
+            <h2><i class="fa-solid fa-chevron-right"></i>Learn Basic Languages</h2>
+            <button id="explore"><a href="#">View All<i class="fa-solid fa-chevron-right"></i></a></button>
+        </div>
+
+        <div id="courses">
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://ictacademy.com.ng/wp-content/uploads/2022/11/C_C_featuredimage.png">
+                <h3>C/C++</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><i class="fa-solid fa-indian-rupee-sign">1000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://i0.wp.com/footmark.com.tw/wp-content/uploads/2015/04/2e7debf8e74ff99b71487214246272a2.png?fit=600%2C315&ssl=1">
+                <h3>Java</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p><i class="fa-solid fa-indian-rupee-sign">1000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://www.techbooster.co.in/images/news/9d881e829580c8ad2f25c1524e69a4db.jpg">
+                <h3>Python</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p><i class="fa-solid fa-indian-rupee-sign">1000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://www.pragimtech.com/wp-content/uploads/2019/03/java-script.jpg">
+                <h3>JavaScript</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><i class="fa-solid fa-indian-rupee-sign">1000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://repository-images.githubusercontent.com/3432266/7e79bf80-7aa6-11eb-9cbd-d7bda7eaf1aa">
+                <h3>Kotlin</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, vero!</p><i class="fa-solid fa-indian-rupee-sign">1200</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://kinsta.com/wp-content/uploads/2023/10/PHP_Feature-Image.jpg">
+                <h3>php</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente.</p><i class="fa-solid fa-indian-rupee-sign">800</i></a>
+            </div>
+        </div>
+        <div id="mheader3">
+            <h2><i class="fa-solid fa-chevron-right"></i>Get started with AI</h2>
+            <button id="explore"><a href="#">View All<i class="fa-solid fa-chevron-right"></i></a></button>
+        </div>
+        <div id="courses">
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://blog.checkpoint.com/wp-content/uploads/2023/04/blog-chatgpt-2000x700-1-800x400.jpg">
+                <h3>Prompt Engineering</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><i class="fa-solid fa-indian-rupee-sign">2000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhzvYIEsIvorA37Es5L4z0jfGmQcoZ47qwlQ&s">
+                <h3>Microsoft Copilot</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, omnis in.</p><i class="fa-solid fa-indian-rupee-sign">3500</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://nocodestartup.io/wp-content/uploads/2025/11/Cursor-O-Guia-Definitivo-para-Programar-com-IA-e-Superar-o-VS-Code.png">
+                <h3>Vibe Coding with Cursor AI</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat.</p><i class="fa-solid fa-indian-rupee-sign">3500</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2i4yb_4fRQFb4SFyyMWmhwsFVlJB7Nfm6nw&s">
+                <h3>Google AI</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><i class="fa-solid fa-indian-rupee-sign">4000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqkMCK2eQhQ2PpcWpz2ipMP-ze_Ylqlp36eg&s">
+                <h3>Hands-on Agentic AI: Building Intelligent Agents</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cumque..</p><i class="fa-solid fa-indian-rupee-sign">4000</i></a>
+            </div>
+            <div class="box2"><a href="#"title="View details">
+                <img src="https://www.gstatic.com/marketing-cms/assets/images/34/97/256eede64e73b4b62a43ce313200/g-3a-socialshare.png=n-w1440-h810-fcrop64=1,0000114effffee75-rw">
+                <h3>Google Workspace with Gemini</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, inventore error?</p><i class="fa-solid fa-indian-rupee-sign">4000</i></a>
+            </div>
+        </div>
+        <div id="mheader4">
+            <h2><i class="fa-solid fa-chevron-right"></i>Information Technology</h2>
+            <button id="explore"><a href="#">View All<i class="fa-solid fa-chevron-right"></i></a></button>
+        </div>
+        <div id="courses">
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzl07oPMUHYnFn41H35tIJHKQ1LdbsJhv6_A&s">
+                <h3>IBM Full Stack Software Developer</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit..</p><i class="fa-solid fa-indian-rupee-sign">3500</i></a>
+            </div>
+            <div class="box2"><a href="#"title="View details">
+                <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/5c/4855219e884cc89ae6b6ffa5ae9f83/IBM-Data-Engineering-Foundations-Specialization.jpg?auto=format%2C%20compress%2C%20enhance&dpr=1&w=320&h=204&q=50&fit=crop">
+                <h3>IBM Relational Database Administrator with GenAI</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam.</p><i class="fa-solid fa-indian-rupee-sign">3500</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/18/2aa16c328a457cb910aa933bf2cd87/Professional-Certificate-Cloud-App.jpg?auto=format%2C%20compress%2C%20enhance&dpr=1&w=320&h=204&fit=crop&q=50">
+                <h3>Data Engineering Foundations</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, cupiditate.</p><i class="fa-solid fa-indian-rupee-sign">4000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-_lKS2O_AmqYZWN0ckQJSWZX_W2Cwx_a9FQ&s">
+                <h3>Network & System Administration</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><i class="fa-solid fa-indian-rupee-sign">3000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://techvidvan.com/tutorials/wp-content/uploads/2021/06/DS-Algorithm.jpg">
+                <h3>Data Structure Alogorithm</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati.</p><i class="fa-solid fa-indian-rupee-sign">5000</i></a>
+            </div>
+            <div class="box2"><a href="#" title="View details">
+                <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google-Analytics-4-Blog-Post-Header-2096x1182.width-1300_O3uqryV.jpg">
+                <h3>Google Data Analytics</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis.</p><i class="fa-solid fa-indian-rupee-sign">4000</i></a>
+            </div>
+        </div>
+    </div>
+    <div id=codeLogo>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/047/247/445/small/3d-code-icon-symbols-of-programming-illustration-png.png" height="120px">
+    </div><hr>
+    <div id="footer">
+        <div class="footerlogo">
+            <ul>
+                <li class="logo2">CourseMatrix</li>
+                <li><h4 class="slogan">Level up your tech skills.</h4></li>
+            </ul>
+        </div>
+        <div id="f0">
+            <div id="f1">
+                <ul>
+                    <li><a href="About.html" target="_blank">About CourseMatrix</a></li>
+                    <li><a href="Courses.html" target="_blank">Explore All Courses<i class="fa-solid fa-caret-right"></i></a></li>
+                    <li><a href="">FAQ</a></li>
+                </ul>
+            </div>
+            <div id="f2">
+                <ul>
+                    <li><a href="Contact.html" target="_blank">Contact Us</a></li>
+                    <li class="email">coursematrix@xyz.com</li>
+                    <li class="phno">+91 1234567890</li>
+                </ul>
+            </div>
+            <div id="f3">
+                <ul>
+                    <li><a href="">Terms of Use</a></li>
+                    <li><a href="">Privacy Notices</a></li>
+                    <li><a href="">Support/Submit an E-Ticket</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer2">
+            <hr class="footerline"><br><br><br>
+            <center>
+                <a href=""><i class="fa-brands fa-facebook" title="Facebook"></i></a>
+                <a href=""><i class="fa-brands fa-square-x-twitter" title="X"></i></a>
+                <a href=""><i class="fa-brands fa-youtube" title="YouTube"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin" title="LinkedIn"></i></a>
+                <p>©Copyright. All rights reserved.</p>
+                <p>Made by <b>Akshat Joshi</b></p>
+            </center>
+        </div>
+    </div>
+</body>
+</html>
